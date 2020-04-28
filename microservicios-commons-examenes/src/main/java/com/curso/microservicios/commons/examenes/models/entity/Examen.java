@@ -82,17 +82,30 @@ public class Examen implements Serializable {
 		// preguntas.forEach(p -> this.addPregunta(p));
 		// es lo mismo que
 		preguntas.forEach(this::addPregunta);
-		
+
 	}
-	
+
 	public void addPregunta(Pregunta pregunta) {
 		this.preguntas.add(pregunta);
 		pregunta.setExamen(this);
 	}
-	
+
 	public void removePregunta(Pregunta pregunta) {
 		this.preguntas.remove(pregunta);
 		pregunta.setExamen(null);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Examen)) {
+			return false;
+		}
+		Examen e = (Examen) obj;
+
+		return this.id != null && this.id.equals(e.getId());
 	}
 
 }
