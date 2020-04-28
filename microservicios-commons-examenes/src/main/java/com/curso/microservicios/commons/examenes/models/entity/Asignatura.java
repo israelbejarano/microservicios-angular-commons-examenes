@@ -1,6 +1,7 @@
 package com.curso.microservicios.commons.examenes.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,6 +35,10 @@ public class Asignatura implements Serializable {
 	@JsonIgnoreProperties(value = { "padre" }, allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "padre", cascade = CascadeType.ALL)
 	private List<Asignatura> hijos;
+
+	public Asignatura() {
+		this.hijos = new ArrayList<>();
+	}
 
 	public Long getId() {
 		return id;
